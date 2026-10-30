@@ -5,6 +5,14 @@ from core import db, nim, ui, viz
 ui.header("Subject Hub", "🗂")
 u = db.uid()
 st.caption("Everything in one place → zero friction → no procrastination.")
+with open("guide.pdf","rb") as f:
+    pdf_bytes = f.read()
+    download_button = st.download_button(
+    "Download PDF",
+    data=pdf_bytes,
+    file_name="Guide.pdf",
+    )
+    st.write(download_button)
 
 q = st.text_input("🔎 Search everything (notes, mistakes, flashcards)")
 if q:
