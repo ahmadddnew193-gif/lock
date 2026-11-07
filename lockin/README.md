@@ -1,0 +1,30 @@
+LockIn: AI study system on NVIDIA NIM, multi-user, with admin panel
+
+Models
+  Everything (vision, teaching, grading) uses mistralai/mistral-large-4-1t-a52b.
+  If a model is ever retired or unavailable, the app automatically tries backups, and Admin Panel, System shows what works.
+  NIM_REASONING=none is fastest. Set it to high for deeper (slower) reasoning.
+  Optional overrides: NIM_TEACHER_MODEL, NIM_VISION_MODEL, NIM_FAST_MODEL (comma-separated lists, first one wins).
+
+Local run
+  pip install -r requirements.txt
+  copy .env.example to .env and fill it in (leave DATABASE_URL empty to use a local SQLite file)
+  streamlit run app.py
+
+Streamlit Community Cloud
+  1. Push this folder to GitHub (the folder containing app.py)
+  2. New app, main file path: app.py
+  3. Advanced settings, Secrets: paste .streamlit/secrets.toml.example with your real values
+  4. Deploy, then log in under Admin login with your MASTER_KEY
+
+Permanent database (needed on Streamlit Cloud, whose disk resets)
+  1. Create a free project at supabase.com
+  2. Click Connect, choose Type URI and Method Transaction pooler, copy the string
+  3. Put it in the DATABASE_URL secret (no backslashes, URL-encode special characters in the password)
+  4. Choose the Supabase region closest to Streamlit Cloud (US East) for the fastest page loads
+
+Changing the admin password
+  Streamlit Cloud, Settings, Secrets, edit MASTER_KEY, Save.
+
+Deleting data
+  Admin Panel, Data: delete one student's data, whole tables, old records, or wipe all students.
