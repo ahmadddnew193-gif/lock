@@ -1,0 +1,6 @@
+streamlit>=1.46
+openai>=1.50
+python-dotenv>=1.0
+pandas>=2.0
+plotly>=5.20
+psycopg2-binary>=2.9.11
